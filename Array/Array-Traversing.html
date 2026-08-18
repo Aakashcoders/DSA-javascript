@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Traversing</title>
+</head>
+
+<body>
+
+    <input type="text" id="input">
+    <button type="submit" onclick="getValue()"> Submit</button> <br>
+
+    <script>
+
+        let a = [6, 5, 78, 25, 4, 9, 3, 2, 7, 65, 0, 1, 11, 77]
+
+        for (let i = 0; i < a.length; i++) {   //Travesing
+            document.write(` Array ${i} is ${a[i]} <br>`)
+        }
+
+        let x = 10 //Access 
+        document.write(a[x])
+
+        function getValue() {  //function access
+
+            let inputvalue = document.getElementById("input").value;
+            let num = Number.parseInt(inputvalue) // same parseInt(inputvalue)
+            if (inputvalue <= a.length && !isNaN(num) && num >= 0) { //condision
+                alert(a[inputvalue] + " index or input value  " + inputvalue)
+            } else {
+                alert("Plasse Enter Valid number")
+            }
+        }
+
+        // ≥ (Greater than or equal to): The most common and clear way to write this rule.
+        // ≮ (Not less-than): The literal slash through the less-than symbol (<).
+        // ! < or not less than: Used in some computer code or plain text
+        // 1. !isNaN(num) -> Check kiya ki input number hai ya nahi
+        // 2. num >= 0    -> Check kiya ki number negative to nahi hai (Not less than 0)
+        // 3. num < a.length -> Check kiya ki array ki limit se bahar to nahi hai
+
+    </script>
+</body>
+
+</html>
