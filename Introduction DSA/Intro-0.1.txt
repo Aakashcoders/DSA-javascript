@@ -1,0 +1,13 @@
+========================================
+Topic Name: Introduction DSA
+Date: 18-Aug-2026
+========================================
+
+Beyond Interviews: While DSA is often associated with cracking technical interviews for top-tier tech companies, it is fundamentally about building efficient, high-performance software that consumes minimal memory and runs smoothly.
+Data Organization: The core concept is managing data effectively. By organizing data—such as sorting or structuring it properly—you can perform operations like searching and processing much faster than with unorganized data.
+Algorithms Defined: An algorithm is simply the set of systematic steps followed to solve a problem or organize data.
+Structure Types: Data structures are broadly categorized into Primitive (simple values like numbers or strings) and Non-Primitive (complex structures like arrays, lists, stacks, queues, trees, and graphs). These are further classified as Linear (sequential) and Non-Linear (hierarchical or interconnected).
+Core Operations: Regardless of the structure, developers frequently perform operations like traversing, searching, sorting, merging, inserting, and deleting data.
+Course Roadmap: The instructor outlines a plan to cover various structures—starting with Arrays—and emphasizes that this series will focus on hands-on learning through JavaScript without getting lost in overly complex theoretical jargon.
+
+CMD Command :- code . //open vscode editor
