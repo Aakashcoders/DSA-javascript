@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ul="lang">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Insert</title>
+</head>
+
+<body>
+
+    <input type="text" required placeholder="Enter the new Element" id="newelement"><input type="text" required
+        placeholder="Enter the position" id="position">
+    <button onclick="insertEl()">Insert</button>
+    <script>
+
+        // let arr = [10, 20, 30, 40, 50, 60, 70]
+        // let newElement = 25
+        // let position = 2
+        // console.log(arr) //(7) [10, 20, 30, 40, 50, 60, 70]
+
+        // // arr[position] = newElement do this value is add 2 element but before add value remove 
+        // // console.log(arr)
+
+        // for (i = arr.length - 1; i >= 0; i--) { //reverase loop 
+        //     // console.warn(arr[i])
+
+        //     if (i >= position) {
+        //         arr[i + 1] = arr[i]  // index value + 1 = current index  output :-(8) [10, 20, 30, 30, 40, 50, 60, 70] 
+        //         if (i == position) {
+        //             arr[i] = newElement
+        //         }
+        //     }
+        // }
+        // console.log(arr)
+
+        function insertEl() {
+            let arr = [10, 20, 30, 40, 50, 60, 70]
+            let newEle = document.querySelector("#newelement").value
+            let position = document.querySelector("#position").value
+            let Newnum = Number.parseInt(newEle)
+            let Positionnum = Number.parseInt(position)
+            console.log(arr)
+            for (i = arr.length - 1; i >= 0; i--) {
+                if (i >= Positionnum && Positionnum <= arr.length && !isNaN(Positionnum)) {
+                    arr[i + 1] = arr[i]
+                    if (i == Positionnum) {
+                        arr[i] = Newnum
+                    }
+                }
+            }
+            console.log(arr)
+        }
+
+        
+    </script>
+</body>
+
+</html>
