@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Delete</title>
+</head>
+
+<body>
+
+    <input type="text" id="input" placeholder="Enter your position ">
+    <button onclick="DeleteEle()">Remove Element</button>
+    <script>
+        // let arr = [29, 36, 25, 48, 69, 36, 47, 10, 80]
+        // let position = 3
+        // for (i = position; i < arr.length -1; i++) {
+        //     arr[i] = arr[i + 1]           //value overwrite 
+        //     // console.log(arr[i])
+        // }
+        // arr.length = arr.length-1 //remove the last duplicate element 80
+        // console.log(arr)
+
+        function DeleteEle() {
+            let arr = [29, 36, 25, 48, 69, 36, 47, 10, 80]
+            let position = document.querySelector("#input").value //Input is return value type of string
+            // console.log(typeof position)
+            let positionnum = parseInt(position)
+            for (i = positionnum; i < arr.length - 1; i++) {
+                arr[i] = arr[i + 1]
+
+            }
+            arr.length = arr.length - 1
+            console.log(arr)
+        }
+    </script>
+</body>
+
+</html>

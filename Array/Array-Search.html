@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Search</title>
+</head>
+
+<body>
+
+    <input type="text" id="input" placeholder="Enter value">
+    <button onclick="SearchEl()">Search</button>
+    <script>
+        // let arr = [10, 20, 30, 40, 50, 60, 70, 80, 90]
+        // let items = 60
+        // let index = undefined // javascript automatically initilize value undefined
+
+        // for (i = 0; i < arr.length - 1; i++) {
+        //     // console.log(arr[i])
+
+        //     if (arr[i] === items) {
+        //         index = i //i have contained the not value a index
+        //         break;
+        //     }
+        // }
+        // console.log(index)
+        // console.log(arr.indexOf(80))
+        // console.log(arr.splice(4, 2))
+        // console.log(arr)
+
+        function SearchEl() {
+            let arr = [10, 20, 30, 40, 50, 60, 70, 80, 90]
+            // let items = document.getElementsByName(type = "text").value //Since getElementsByName() returns a NodeList, you must access elements using index numbers like [0] before reading the .value property."
+            let items = document.querySelector('input[type="text"]').value
+            console.log(items)
+            let index
+            for (i = 0; i < arr.length - 1; i++) {
+                if (arr[i] === parseInt(items)) {
+                    index = i
+                }
+            }
+            console.log(index)
+        }
+        // console.log(index) give error because clg pas out function
+    </script>
+</body>
+
+</html>
