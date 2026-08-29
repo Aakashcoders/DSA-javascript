@@ -1,0 +1,50 @@
+Return Value:
+
+RecursionFirst function ke andar koi return statement nahi hai.
+
+JavaScript mein agar function explicit return value define na kare, toh wo default mein undefined return karta hai.
+
+Outer console.log:
+
+Outer console.log(...) statement ab is returned value (undefined) ko print kar deta hai.
+
+RecursionFirst(x + 1) — Proper kyu chal raha hai?
+x + 1 Expression Evaluation hai. Yahan:
+
+Function call hone par x + 1 ki value compute hoti hai (jaise 0 + 1 = 1).
+
+1 value agle function call ko paas hoti hai.
+
+Original variable x change nahi hota, lekin agle call ke paas incremented value pahunchti hai.
+
+Har call mein x ki value badhti rehti hai (0, 1, 2... 10).
+
+Jab x ki value 10 hoti hai, tab if (x < 10) condition False ho jaati hai aur recursion ruk jaata hai.
+RecursionFirst(x++) — Infinite Loop (Maximum Call Stack Exceeded) kyu ho raha hai?
+Iska reason hai Postfix Increment Operator (x++) ki working style.
+
+x++ do kaam karta hai:
+
+Pura expression evaluate hone ke baad original x ki value mein 1 add karta hai.
+
+Lekin function call ke paas Purani Value (Current Value) bhejta hai.
+
+Step-by-Step Call Trace:
+Pehli baar: x = 0.
+
+Function call hota hai: RecursionFirst(x++).
+
+Postfix (x++) hone ki wajah se function ko 0 paas hota hai (na ki 1).
+
+Agla function instance execution start karta hai jahan fir se x = 0 hota hai.
+
+Ye cycle endlessly chalti rehti hai:
+
+RecursionFirst(0) → internal call RecursionFirst(0) → internal call RecursionFirst(0)...
+
+Condition if (x < 10) hamesha if (0 < 10) rahegi jo Hamesha True rahegi.
+
+End mein JavaScript engine ka Call Stack bhar jaayega aur RangeError: Maximum call stack size exceeded error aayega.
+
+Correct Alternatives
+Agar aap increment operator hi use karna chahte hain, toh aapko Prefix Increment (++x) use karna padega:

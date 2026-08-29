@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Merage </title>
+</head>
+
+<body>
+
+    <script>
+        let arr = [10, 20, 30, 40, 50, 60]
+        let arr2 = [70, 80, 90, 100]
+        let arr3 = []
+        //manuali work
+        // for (i = 0; i < arr.length; i++) {
+        //     // arr3 = arr[i] //arr3 me value overwrite  ho raha hai
+        //     arr3.push(arr[i]) // same work // arr3[i] = arr[i]
+        // }
+        // for (i = 0; i < arr2.length; i++) {
+        //     // arr3[arr3.length] = arr2[i]
+        //     arr3[arr.length + i] = arr2[i]
+        //     // console.log(arr3)
+        // }
+        // console.log(arr3)
+        // console.warn(arr3)
+
+
+        // with helf of function simple
+        arr3 = [...arr, ...arr2] //Spread operator
+        console.log(arr3)
+        //29 line time complexcity add acesnding program let asume Enter 100 line 100 + 29 = 129 
+        //space complexcity 3
+    </script>
+
+</body>
+
+</html>

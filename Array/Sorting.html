@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Sorting</title>
+</head>
+
+<body>
+    <script>
+        // let arr = [40, 30, 12, 25]
+        let arr = [10, 55, 1, 6, 7, 4, 60, 8, 750]
+
+        for (i = 0; i < arr.length; i++) {
+            // console.log(i)
+            for (j = 0; j < arr.length; j++) {
+                // console.warn(j)
+                if (arr[j] > arr[j + 1]) {
+                    let teamp = arr[j]
+                    arr[j] = arr[j + 1]
+                    arr[j + 1] = teamp
+                }
+            }
+        }
+        console.log(arr)
+    </script>
+</body>
+
+</html>
