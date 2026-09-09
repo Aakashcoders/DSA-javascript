@@ -1,0 +1,202 @@
+
+========================================
+Topic Name: Array Recursion
+Date: 1-Oct-2026
+========================================
+Return Value:
+
+RecursionFirst function ke andar koi return statement nahi hai.
+
+JavaScript mein agar function explicit return value define na kare, toh wo default mein undefined return karta hai.
+
+Outer console.log:
+
+Outer console.log(...) statement ab is returned value (undefined) ko print kar deta hai.
+
+RecursionFirst(x + 1) — Proper kyu chal raha hai?
+x + 1 Expression Evaluation hai. Yahan:
+
+Function call hone par x + 1 ki value compute hoti hai (jaise 0 + 1 = 1).
+
+1 value agle function call ko paas hoti hai.
+
+Original variable x change nahi hota, lekin agle call ke paas incremented value pahunchti hai.
+
+Har call mein x ki value badhti rehti hai (0, 1, 2... 10).
+
+Jab x ki value 10 hoti hai, tab if (x < 10) condition False ho jaati hai aur recursion ruk jaata hai.
+RecursionFirst(x++) — Infinite Loop (Maximum Call Stack Exceeded) kyu ho raha hai?
+Iska reason hai Postfix Increment Operator (x++) ki working style.
+
+x++ do kaam karta hai:
+
+Pura expression evaluate hone ke baad original x ki value mein 1 add karta hai.
+
+Lekin function call ke paas Purani Value (Current Value) bhejta hai.
+
+Step-by-Step Call Trace:
+Pehli baar: x = 0.
+
+Function call hota hai: RecursionFirst(x++).
+
+Postfix (x++) hone ki wajah se function ko 0 paas hota hai (na ki 1).
+
+Agla function instance execution start karta hai jahan fir se x = 0 hota hai.
+
+Ye cycle endlessly chalti rehti hai:
+
+RecursionFirst(0) → internal call RecursionFirst(0) → internal call RecursionFirst(0)...
+
+Condition if (x < 10) hamesha if (0 < 10) rahegi jo Hamesha True rahegi.
+
+End mein JavaScript engine ka Call Stack bhar jaayega aur RangeError: Maximum call stack size exceeded error aayega.
+
+Correct Alternatives
+Agar aap increment operator hi use karna chahte hain, toh aapko Prefix Increment (++x) use karna padega:
+
+
+Recursion in JavaScript is a programming technique where a function calls itself to solve a smaller piece of a larger problem. It acts as an alternative to traditional loops (for and while) and is highly effective for tasks that can be broken down into identical, repetitive sub-problems, such as traversing nested JSON objects or trees
+
+Recursion ko JavaScript ke context mein bahut hi simple tarike se samjhaya gaya hai. Yahan iska in-depth summary Hinglish mein hai:
+
+1. Core Logic aur Intuition
+Recursion ka simple matlab hai "kisi cheez ka khud ko dohrana". Programming mein, jab ek function apne aap ko hi call karta hai, toh use recursion kehte hain. Iska main purpose kisi bade kaam ko chote-chote identical hisson mein todna hota hai. Recursion mein do sabse important cheezein hoti hain:
+
+Function calling itself: Ye loop ki tarah kaam karta hai, lekin bina traditional loop (for/while) ke.
+Base Condition (Stopping condition): Yeh sabse zaruri hai. Agar base condition nahi hogi, toh function infinite baar chalta rahega aur browser ya memory crash ho jayegi. Yeh woh point hai jahan recursion ruk jata hai.
+2. Step-by-Step Logic
+Recursion ka kaam karne ka tareeka stack-based hota hai:
+
+Calling Phase: Pehle function baar-baar apne aap ko call karta hai aur har call ek naye level par jati hai.
+Base Case Check: Har step par function check karta hai kya uska target pura hua ya nahi.
+Returning Phase: Jab base condition hit hoti hai, tab function wapas reverse direction mein values return karna shuru karta hai, jisse final result calculate hota hai.
+3. Example: Factorial (Dry Run)
+Factorial nikalne ka logic hota hai: n * (n-1) * (n-2)... tak 1 tak.
+
+Example: Factorial of 3
+
+Step 1: Function call hota hai 3 ke liye. Yeh 3 * Factorial(2) ko return karne ki koshish karta hai.
+Step 2: Ab Factorial(2) call hota hai. Yeh 2 * Factorial(1) return karne ki koshish karta hai.
+Step 3: Ab Factorial(1) call hota hai. Yeh 1 * Factorial(0) return karne ki koshish karta hai.
+Step 4 (Base Case): Jab value 1 ya 0 tak pahunchti hai, function return 1 karta hai (kyunki 1 ka factorial 1 hota hai).
+Step 5 (Unwinding/Returning):
+Factorial(1) ne 1 return kiya.
+Factorial(2) ne 2 * 1 = 2 calculate kiya.
+Factorial(3) ne 3 * 2 = 6 calculate kiya.
+End mein, aapko final result 6 mil jata hai. Is tarike se bina kisi loop ke, recursion ne value calculate kar di.
+
+
+========================================
+Topic Name: Array Indirect Recursion
+Date: 9-Oct-2026
+========================================
+
+Pehle normal recursion samajhte hain: Direct Recursion me ek function A() direct khud ko hi call karta hai (A() $\rightarrow$ A()).
+Lekin Indirect Recursion me ek function A() doosre function B() ko call karta hai, aur B() vapas function A() ko call kar deta hai. Yahan ek cycle ban jati hai: A $\rightarrow$ B $\rightarrow$ A $\rightarrow$ B...
+Step-by-Step Logic
+Function A() execution start karta hai.
+A() ke andar se B() call hota hai.
+B() execution start karta hai aur wahan se vapas A() call ho jata hai.
+Ye loop tab tak chalta hai jab tak base condition reach na ho jaye (infinite loop/stack overflow se bachne ke liye).
+Indirect recursion (also known as mutual recursion) occurs in JavaScript when two or more functions call each other in a cyclical cycle rather than a single function calling itself directly
+
+Jab recursion chalne ke baad wapas laut-ta hai, toh usko "Unwinding" ya "Backtracking" kehte hain. Call Stack me functions jab complete hote hain, toh wo reverse order me hi execute hokar bahar nikalte hain.
+Aaise samajhte hain ki test(5) ke andar exact logic kaise kaam kar raha hai:
+Step-by-Step Execution Logic
+Jab hum test(5) run karte hain:
+Going Down (Stack Building / Direct Calls):
+test(5) call hua, 5 > 0 condition true hai $\rightarrow$ test(4) call ho gaya (console.log(5) ruk gaya).
+test(4) call hua $\rightarrow$ test(3) call ho gaya.
+test(3) call hua $\rightarrow$ test(2) call ho gaya.
+test(2) call hua $\rightarrow$ test(1) call ho gaya.
+test(1) call hua $\rightarrow$ test(0) call ho gaya.
+test(0) call hua $\rightarrow$ 0 > 0 false hai, toh if block chala nahi. Ab log chala: console.log(0) print hua.
+
+Returning Back (Stack Unwinding):
+Ab test(0) khatam ho gaya, control wapas test(1) par aaya. Ab test(1) ka bacha hua part chalega: console.log(1).
+Wapas test(2) par aaya: console.log(2).
+Wapas test(3) par aaya: console.log(3).
+Wapas test(4) par aaya: console.log(4).
+Wapas test(5) par aaya: console.log(5).
+Calling ke waqt wo niche gaya, aur printing tab hui jab wo stack se wapas laut raha tha.
+. Core Logic aur Intuition
+Direct recursion mein ek function khud ko hi baar-baar call karta hai. Lekin Indirect Recursion mein ek cycle banti hai: Function A, Function B ko call karta hai, aur Function B wapas Function A ko call kar deta hai. Ye process tab tak chalti hai jab tak koi base condition (stopping condition) hit nahi ho jati. Iska main purpose tasks ko tab tak perform karna hota hai jab tak specific condition satisfy na ho.
+
+2. Step-by-Step Logic
+Do functions define karo: Sabse pehle do alag-alag functions banaye jate hain.
+Cross-calling: Pehle function ke andar dusre function ko call kiya jata hai, aur dusre function ke andar wapas pehle wale ko.
+Condition Check: Har function ke andar ek 'if' condition rakhi jati hai. Agar condition true hai, toh recursion continue hota hai. Agar condition false ho jati hai, toh recursion ruk jata hai.
+Flow: Jab hum pehle function ko start karte hain, control dusre pe jata hai, phir wapas pehle pe, aur ye loop tab tak chalta hai jab tak condition false na ho.
+3. Concrete Example: Apple Buying Example
+Maano aapke paas 100 rupaye hain aur ek apple 10 rupaye ka hai. Hame tab tak apple khareedne hain jab tak paise khatam na ho jayein:
+
+Step 1: buyApple function call hota hai. Ye check karta hai ki kya paise > 0 hain? Agar haan, toh ye 10 rupaye kaat kar buyMore function ko call karta hai.
+Step 2: buyMore function check karta hai ki kya abhi bhi paise bache hain? Agar haan, toh ye wapas buyApple function ko call kar deta hai.
+Step 3 (Dry Run):
+buyApple(100) -> 10 rupaye kam kiye -> buyMore(90) call kiya.
+buyMore(90) -> check kiya 90 bache hain -> buyApple(90) call kiya.
+Ye process chalti rahegi jab tak buyApple ke paas 0 na aa jaye.
+Jaise hi paise 0 honge, buyMore function condition check karega, condition false ho jayegi, aur recursion stop ho jayega.
+
+========================================
+Topic Name: Head or tail Recursion
+Date: 9-Oct-2026
+========================================
+Head RecursionIn head recursion, the recursive call is the first statement or operation in the function
+How it works: The function calls itself immediately before doing any other work. All actual processing or calculations happen when the function returns (during stack unwinding)
+In tail recursion, the recursive call is the last operation or final statement executed by the function
+How it works: The function does all its calculations or processing first, passing the running result (often using an accumulator) into the next recursive call
+A call stack is a fundamental memory mechanism that programming language interpreters and operating systems use to track active function execution. It acts like a "to-do list" for the computer, keeping tabs on which function is currently running, which function called it, and where the program should return once the current function finishes. 
+The call stack operates strictly on a Last-In, First-Out (LIFO) data structure principle. The last function pushed onto the stack is always the first one to be completed and removed
+A debugger browser (often called browser developer tools or DevTools) is a built-in software tool inside a web browser used by developers to test, debug, and inspect the code of a website.
+ Core Logic aur Intuition
+Recursion me function tab tak stack me add hote rehte hain jab tak base condition na aa jaye.
+
+Head Recursion: Isme function pehle khud ko call karta hai, aur phir bacha hua kaam (jaise printing) recursion call complete hone ke baad karta hai. Iska matlab hai ki processing 'wapas aate waqt' (unwinding phase) hoti hai.
+Tail Recursion: Isme processing function call se pehle hoti hai. Jaise hi function execute hota hai, kaam ho jata hai, aur recursive call sabse last step hota hai.
+2. Step-by-Step Logic
+Call Stack: Jab bhi koi function call hota hai, JavaScript engine use ek stack me store kar leta hai. Recursion me, ek function khatam hone se pehle dusra call ho jata hai, jisse stack bharne lagta hai.
+Head vs Tail Difference:
+Head Recursion me pehle saare recursive calls stack me push hote hain, fir stack jab empty hona shuru hota hai (pop), tab result print hota hai.
+Tail Recursion me pehle hi value process ho jati hai, isliye result seedha sequence me dikhta hai.
+3. Concrete Example Dry Run
+Maan lijiye humein 5 se 0 tak count karna hai:
+
+Head Recursion (Result: 0, 1, 2, 3, 4, 5):
+
+Function ne khud ko 5 ke liye call kiya, phir 4, 3, 2, 1, 0.
+Stack me functions 5 se 0 tak stack ho gaye.
+Base condition 0 pe aakar ruki.
+Ab stack wapas khali hona shuru hoga. Sabse pehle 0 wapas aayega, print hoga. Phir 1, 2, 3, 4, 5. Isliye output ulta ya ascending dikhta hai.
+Tail Recursion (Result: 5, 4, 3, 2, 1, 0):
+
+Function ne pehle value 5 process ki (print kiya).
+Uske baad next call (4) trigger ki.
+Isme process pehle ho gaya, recursion baad me. Isliye output 5 se shuru hokar 0 tak jata hai.
+Summary: Head recursion me kaam recursion ke baad hota hai (isliye order reverse ho jata hai), aur Tail recursion me kaam recursion se pehle hota hai (isliye order sequence me rehta hai).
+
+========================================
+Topic Name: Array reverse Recursion
+Date: 9-Oct-2026
+========================================
+
+1. Core Logic aur Intuition:
+Array ko reverse karne ka basic logic Swapping (adla-badli) hai. Humein array ke pehle element ko last element ke saath swap karna hota hai, phir second element ko second-last ke saath, aur ye process tab tak chalti hai jab tak hum array ke middle tak na pahunch jayein. Recursion mein hum isi kaam ko bar-bar ek hi function ko call karke perform karte hain, jisse har step par pointers (start aur end) update hote rehte hain.
+
+2. Step-by-Step Logic:
+
+Pointers setup: Do pointers use karte hain—ek 'start' (jo 0 se shuru hota hai) aur ek 'end' (jo array ki last index par hota hai).
+Swapping: Ek temporary variable (temp) ka use karke 'start' aur 'end' position wali values ko swap karte hain.
+Recursive Call: Function ko wapas call karte hain, lekin is baar 'start' ko ek position aage badha dete hain (start + 1) aur 'end' ko ek position peeche (end - 1).
+Base Case (Stopping Condition): Recursion tab rukta hai jab 'start' pointer 'end' pointer se bada ho jaye ya dono barabar ho jayein. Iska matlab hai ki array ke saare elements swap ho chuke hain.
+3. Concrete Example Dry Run:
+Maano array hai: [10, 20, 30, 40]
+
+Step 1: Start = 0 (value 10), End = 3 (value 40).
+Temp mein 10 rakha. 10 ki jagah 40 dala, aur 40 ki jagah 10 dala.
+Array ban gaya: [40, 20, 30, 10]
+Step 2 (Recursive Call): Start = 1 (value 20), End = 2 (value 30).
+Temp mein 20 rakha. 20 ki jagah 30 dala, aur 30 ki jagah 20 dala.
+Array ban gaya: [40, 30, 20, 10]
+Step 3 (Stopping Condition): Ab Start = 2 ho gaya aur End = 1. Kyunki Start > End, recursion ruk jayega.
+Result: Array poora reverse ho chuka hai.

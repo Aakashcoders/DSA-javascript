@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTP-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Array Recursion
+    </title>
+</head>
+
+<body>
+
+    <script>
+        // function RecursionFirst(x) {
+        //     console.log(x)
+        //     if (x < 10) {
+        //         //RecurisonFirst(x++) Pura expression evaluate hone ke baad original x ki value mein 1 add karta hai. Lekin function call ke paas Purani Value (Current Value) bhejta hai.
+        //         // RecursionFirst(x + 1) same work
+        //         RecursionFirst(++x) //// Prefix: Pehle increment karega (0 -> 1), fir new value paas karega
+
+        //     }
+        // }
+        // let x = 0
+        // console.log(RecursionFirst(x))
+
+        console.log("Factorial find the Recursion function")
+        //5*4*3*2*1 = 120 
+
+        function FactorialSecond(item) {
+            if (item == 0) {
+                return 1
+            }
+            console.log(item)
+            return item * FactorialSecond(item - 1)
+
+        }
+        let value = 8
+        console.log(FactorialSecond(value))
+
+        // let arr = ['apple', 'banana', 'mongo', 'pineapple']
+
+        // let i = 0
+        // while (i < arr.length) {
+        //     console.log(arr[i])
+        //     i++
+        // }
+
+
+    </script>
+</body>
+
+</html>
