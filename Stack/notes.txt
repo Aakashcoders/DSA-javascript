@@ -1,0 +1,83 @@
+name = Stack Data structure
+Date = 11/9/26
+
+Aakash, alert() function me template literals (backticks `) ya string concatenation (+) ka use nahi kar rahe ho, isliye variable print nahi ho raha hai.
+JavaScript me string aur variable ko ek sath combine karne ke liye comma , ka use nahi hota, balki concatenation + ya template literals `${}` ka use hota hai.
+Bilkul sahi observation hai, Aakash! console.log() me comma , kaam karta hai, lekin alert() me nahi karta.
+Iska Reason (Logic)
+console.log() aur alert() dono alag tariqe se kaam karte hain:
+console.log() Multiple Arguments Accept Karta Hai:
+JavaScript me console.log() ko design hi aisa kiya gaya hai ki tum isme jitne chahe utne values/variables comma , se separate karke pass kar sakte ho.
+alert() Sirf Single Argument Accept Karta Hai:
+alert() function sirf ek hi value (String) ko accept karta hai display karne ke liye.
+Jab tum alert("Stack is full", NewValue) likhte ho, toh JavaScript sirf pehla argument ("Stack is full") hi alert box me dikhata hai.
+Dusra argument (NewValue) ignore ho jata hai!
+Best Practice (Hamesha Yeh Use Karo)
+Dono jagah consistency aur clean code ke liye hamesha Template Literals (Backticks `) use kiya karo:
+
+Difference: Direct stack = StackSize vs stack.length = StackSize
+Agar tum direct stack = StackSize likhte ho:
+stack array variable ki jagah ek Number ban jata hai (jaise stack = 3).
+Isse array ka data delete hone ke bajaye pura stack variable overwrite hoke plain number ban jata hai. Isiliye console.log(stack) karne par sirf 3 print hota hai.
+Jab tum stack.length = StackSize likhte ho:
+Isse tum JavaScript array ki property (.length) ko change kar rahe ho.
+JavaScript me agar kisi array ki .length ko chhota kar do (jaise 5 se 4 ya 3), toh array baaki ke extra elements ko automatically delete/remove kar deta hai.
+A stack in Data Structures and Algorithms (DSA) is a linear data structure that follows the Last In, First Out (LIFO) principle. This means that the last element added to the stack is the very first one to be removed.
+A perfect real-world analogy is a pile of plates: you can only place a new plate on the top, and if you want to take a plate, you must remove the one at the very top first
+
+Stack Data Structure ko JavaScript ke zariye implement karna sikhaya gaya hai. Stack ek Linear Data Structure hai jo LIFO (Last In, First Out) ya FILO (First In, Last Out) principle par kaam karta hai. Matlab jo cheez sabse last me andar aayegi, wahi sabse pehle bahar niklegi.
+
+1. Core Logic aur Intuition
+Stack ka logic bilkul ek stack of plates jaisa hai. Aap plates ko upar se hi rakh sakte ho (Push) aur upar se hi utha sakte ho (Pop). Aap beech me se plate nahi nikal sakte. Isme hum element add aur remove sirf ek hi end se karte hain, jise 'Top' kehte hain.
+
+2. Step-by-Step Logic
+Initialization: Sabse pehle ek khali array lete hain jo stack ka kaam karta hai. Sath me ek variable banate hain jo stack ki 'current size' track kare aur ek 'max size' set karte hain taaki stack overflow na ho.
+Push Operation:
+Check karte hain ki stack full toh nahi hai (agar current size max size ke barabar hai).
+Agar jagah hai, toh naye element ko array ke us index par daalte hain jo current size indicate kar raha hai.
+Element dalne ke baad current size ko 1 se badha dete hain.
+Pop Operation:
+Check karte hain ki stack khali toh nahi hai (agar current size 0 hai).
+Agar stack me element hai, toh hum current size ko 1 se kam kar dete hain. Isse array ka last element effectively hat jata hai aur woh spot agle element ke liye ready ho jata hai.
+3. Concrete Example Dry Run
+Maano stack ki max size 3 hai.
+
+Step 1 (Push 10): Stack khali hai (size 0). 10 add kiya. Ab stack me [10] hai, size 1 ho gaya.
+Step 2 (Push 20): Size 1 hai, max 3 se kam hai. 20 add kiya. Ab stack [10, 20] hai, size 2 ho gaya.
+Step 3 (Push 30): Size 2 hai. 30 add kiya. Ab stack [10, 20, 30] hai, size 3 ho gaya.
+Step 4 (Push 40): Size 3 hai aur max 3 hai. Ab stack full hai, toh error/alert aayega ki 'Stack is full'.
+Step 5 (Pop): Size 3 hai. Last wala element (30) hata diya. Size 2 ho gaya, stack [10, 20] bach gaya.
+Step 6 (Pop): Size 2 hai. Last wala element (20) hata diya. Size 1 ho gaya, stack [10] bach gaya.
+
+Stack Data Structure ko HTML inputs aur buttons ke saath implement karna sikhaya gaya hai. Stack ka simple rule hota hai: Last-In, First-Out (LIFO). Yani jo element sabse baad mein andar gaya, wahi sabse pehle bahar aayega.
+
+1. Core Logic aur Intuition
+Stack ko aap ek aisi plate ki stack ki tarah samajh sakte hain jahan aap sirf upar se plate rakh sakte hain (push) aur upar se hi hata sakte hain (pop). Isme hum array ka use karte hain kyunki array mein push aur pop methods pehle se bane-banaye milte hain jo stack ke LIFO principle ko perfectly follow karte hain.
+
+2. Step-by-Step Logic
+Push Operation: Jab user input box mein value daalta hai aur 'Add' button click karta hai, toh woh value array ke end mein add ho jati hai.
+Pop Operation: Jab 'Remove' button click hota hai, toh array ka sabse last element remove ho jata hai. Agar stack khali hai, toh pop nahi hoga.
+Display Operation: Ek loop chala kar stack ke saare elements ko screen par dikhaya jata hai taaki user dekh sake ki abhi stack mein kya-kya bacha hai.
+3. Concrete Example: Dry Run
+Maano hamare paas ek empty array [ ] hai:
+
+User input '10' daalta hai aur 'Add' click karta hai:
+
+Logic: Array ke end mein 10 push hua.
+Stack state: [10]
+User input '20' daalta hai aur 'Add' click karta hai:
+
+Logic: Array ke end mein 20 push hua.
+Stack state: [10, 20]
+User 'Remove' (Pop) button click karta hai:
+
+Logic: Jo element sabse last mein aaya tha (20), woh remove ho jayega.
+Stack state: [10]
+User 'Display' click karta hai:
+
+Logic: Loop chalega aur screen par dikha dega ki ab stack mein sirf '10' bacha hai.
+Is tarike se buttons ke click par dynamic interaction create hota hai.
+
+
+
+

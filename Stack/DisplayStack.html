@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack Mine Project</title>
+</head>
+
+<body>
+    <input type="text" name="" id="Inputvalue"><br>
+    <button onclick="Push()">Insert Value in Stack</button><br>
+    <button onclick="Pop()">Remove Value in Stack</button><br>
+    <button onclick="Display()">Display All Values of Stack</button><br>
+
+    <script>
+        let stack = []
+        let StackSize = stack.length //StackSize -1 is remove last element
+        let Max = 5
+
+        function Push() {
+            let NewValue = document.getElementById('Inputvalue').value
+            if (StackSize >= Max) {
+                alert('Stack is fully' + NewValue)
+            } else {
+                stack[StackSize] = NewValue
+                StackSize += 1
+                // stack.length = StackSize                
+                document.getElementById('Inputvalue').value = "";
+
+            }
+            console.log("Element Add")
+        }
+
+        function Pop() {
+            StackSize -= 1
+            stack.length = StackSize
+            console.log('Element are Removed')
+        }
+
+        function Display() {
+            for (let i = 0; i <= StackSize-1; i++) {
+                console.log(`Element no ${i}, Value is ${stack[i]}`)
+            }
+        }
+    </script>
+</body>
+
+</html>

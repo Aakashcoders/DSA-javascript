@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Stack Data Structure </title>
+</head>
+
+<body>
+    <script>
+        let stack = []
+        let StackSize = stack.length
+        let max = 5
+
+        function push(NewValue) {
+
+            if (StackSize >= max) {
+                alert("Stack are full you are can not add " + NewValue)
+                // console.log("Stack are full you are can not add", NewValue)
+            } else {
+                stack[StackSize] = NewValue
+                // StackSize += 1 same work
+                // StackSize++ same work
+                StackSize = StackSize + 1
+            }
+
+        }
+
+        function pop() {
+            if (StackSize > 0) {
+                // StackSize -= 1 same work
+                StackSize-- //// Step 1: Current size me se 1 kam karta hai
+                stack.length = StackSize /// Step 2: Array ka size chhota karke last element ko remove kar deta hai
+            } else {
+                alert('Stack are allready empty')
+            }
+        }
+        push(20) // stack = [20], StackSize = 1
+        push(10) // stack = [20, 10], StackSize = 2
+        push(30) // stack = [20, 10, 30], StackSize = 3
+        push(40) // stack = [20, 10, 30, 40], StackSize = 4
+        push(50) // stack = [20, 10, 30, 40, 50], StackSize = 5
+        push(60) // Stack Full! Alert: "Stack is full"
+
+        pop()    // StackSize-- (4), stack.length = 4 -> stack = [20, 10, 30, 40]
+        pop()    // StackSize-- (3), stack.length = 3 -> stack = [20, 10, 30]
+        pop()    // StackSize-- (2), stack.length = 2 -> stack = [20, 10]
+
+        push(40) // stack = [20, 10, 40], StackSize = 3
+        push(50) // stack = [20, 10, 40, 50], StackSize = 4
+        push(60) // stack = [20, 10, 40, 50, 60], StackSize = 5
+
+        pop()    // StackSize-- (4), stack.length = 4 -> stack = [20, 10, 40, 50]
+
+        console.log(stack)
+    </script>
+</body>
+
+</html>
