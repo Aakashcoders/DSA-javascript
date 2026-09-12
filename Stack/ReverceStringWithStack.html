@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverce String With Stack </title>
+</head>
+
+<body>
+    <script>
+        let data = []
+        let CurrentDateLength = data.length
+        let MaxSize = 5
+
+        function Push(newValue) {
+            data[CurrentDateLength] = newValue
+            CurrentDateLength++
+        }
+        function Pop() {
+            let itemreverceStack = data[CurrentDateLength - 1]
+            CurrentDateLength -= 1
+            data.length = CurrentDateLength
+            return itemreverceStack
+        }
+
+        function ReverceString(item) {
+            for (i = 0; i < item.length; i++) {
+                Push(item[i])
+            }
+            // for (let i = 0; i < item.length; i++) {
+            //     str += Pop() confusion
+            //     console.log(str)
+            // }
+            // return str
+
+            for (let i = 0; i < item.length; i++) { //call By Refarence
+                item[i] = Pop()
+                // console.log(Pop())
+                // Pop()
+            }
+        }
+
+        let str = "Aakash"
+        str = str.split('') //without double squote and single squote ya any sepereter not work
+        ReverceString(str)
+
+        console.log(str)
+        console.log("Array converd to String with help of join function", str.join('')) //without double squote and single squote ya any sepereter not work
+    </script>
+</body>
+
+</html>

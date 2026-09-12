@@ -1,0 +1,145 @@
+name = Stack Data structure
+Date = 12/9/26
+
+In JavaScript, split() is a built-in string method used to divide a string into an ordered list of substrings, put these substrings into an array, and return the array. 
+The division is done by searching for a pattern (a separator) provided in the method's parameter.
+akash, aapne variable ki value overwrite (reassign) ki hai, na ki original string ko change (mutate) kiya hai.
+Step-by-Step Logic Explanation
+Original Variable:
+Jab aapne let str = "Aakash" likha, tab str variable me "Aakash" (String) assign hua.
+split('') Method Ka Output:
+str.split('') execute hone par JavaScript original string ko touch nahi karta. Ye ek naya Array return karta hai: ['A', 'a', 'k', 'a', 's', 'h'].
+Reassignment (Overwriting):
+Aapne = operator ka use karke us naye Array ko dobara str variable me store kar diya (str = str.split('')).
+Pehle str ka data type String tha.
+Ab str ka data type Array ho gaya hai.
+
+Key Takeaway
+Immutability: JavaScript me strings immutable (unchangeable) hoti hain. split() method original string ko modification nahi karta, naya array deta hai.
+Reassignment: let keyword ki wajah se aapne same variable str ko ek naye data type (Array) ki value se overwrite / reassign kiya hai.
+Step-by-Step Logic Explanation
+Doubt 1: itemreverceStack ko bina let/var/const ke define kiye kaise access kar pa rahe ho?
+Logic: JavaScript me jab aap kisi variable ko let, var, ya const bina lagaye directly assign karte ho (itemreverceStack = ...), to JavaScript automatic us variable ko Global Scope me declare kar deta hai (Non-Strict Mode me).
+function Pop() {
+    itemreverceStack = data[CurrentDateLength - 1] // Implicit Global Variable ban gaya
+    ...
+}
+Best Practice: Ye ek buri aadat mani jati hai jisse accidental bugs aate hain. Hamesha let, const, ya var ka explicit use karo:
+let itemreverceStack = data[CurrentDateLength - 1];
+Doubt 2: CurrentDateLength me without -1 kiye assign karne par undefined kyu aa raha hai?
+Logic: Arrays 0-indexed hote hain.  
+Agar array ki length 5 hai, to valid positions/index 0, 1, 2, 3, 4 honge.
+Jab aap Push me last element add karte ho, to CurrentDateLength incement ho kar 5 ho jati hai.  
+Jab aap data[5] access karne ki koshish karoge bina -1 kiye, to 5th index par koi value nahi hoti! Isliye JS undefined return karta hai.  
+data[CurrentDateLength - 1] (yaani data[4]) karne par hi valid last element milta hai
+Doubt 3: let bottom me define karne par bhi global scope me reassign kyu ho raha hai aur Hoisting/Scope ka rule?
+Aapne code me bottom me let str = "Aakash" likha hai aur baad me ReverceString(str) call kiya hai.
+Global Scope Access:
+ReverceString function me jab aapne str = Pop() likha, to function ke andar koi local str define nahi tha (let str nahi tha). Isliye JavaScript ne execution time par outer (Global) scope me jaakar dekha aur wahan pehle se declare ho chuke let str ko reassign (overwrite) kar diya
+var vs let Hoisting Myth:
+var hoisting ke time initialize ho jata hai (undefined ke sath).
+let bhi hoist hota hai, par initialize nahi hota (Temporal Dead Zone me hota hai).
+mportant: Yahan let ya var dono hi cases me global variable reassign ho raha tha kyuki aap function call (ReverceString(str)) variable declare hone ke BAAD kar rahe ho! Agar aap call variable declaring se pehle karte, tab let me error (ReferenceError) milta aur var me undefined behavior milta.
+Call by reference in JavaScript means passing the memory address of a non-primitive data type (like an object or an array) to a function or variable, so changes made to it affect the original data
+
+Step-by-Step Logic Explanation
+1. First Loop (Pushing elements into Stack):
+Jab aap ReverceString(str) call karte ho:
+str ki value ['A', 'a', 'k', 'a', 's', 'h'] (length = 6) hai
+Pehle for loop me saare 6 characters ek-ek karke data array (stack) me push ho jate hain
+Pushing complete hone ke baad CurrentDateLength ki value 6 ho jati hai.
+Second Loop (Popping & Reassigning str):
+Ab doosra for loop chalta hai:
+for (let i = 0; i < item.length; i++) {
+    str = Pop()
+    console.log(str)
+}
+Is loop me total 6 iterations (bars) chalenge:
+1st iteration (i = 0): Pop() return karta hai 'h'. Variable str ki value ho gayi 'h'. Console print karta hai: 'h'
+2nd iteration (i = 1): Pop() return karta hai 's'. Variable str ki value overwrite ho kar ho gayi 's'. Console print karta hai: 's'
+3rd iteration (i = 2): Pop() return karta hai 'a'. Variable str overwrite ho kar: 'a'
+4th iteration (i = 3): Pop() return karta hai 'k'. Variable str overwrite ho kar: 'k'
+5th iteration (i = 4): Pop() return karta hai 'a'. Variable str overwrite ho kar: 'a'
+6th iteration (i = 5): Pop() return karta hai 'A'. Variable str overwrite ho kar: 'A'. Console print karta hai: 'A'.
+3. Loop Execution Finish (Function & Global Scope):
+Loop chala 6 baar. Har baar str variable ko ek single character se reassign (overwrite) kiya gaya.
+Loop ke sabse aakhiri (6th) step me str me last popped element store hua, jo ki 'A' tha!
+Jab function complete ho gaya aur aapne outer scope me Line 41/42 par console.log(str) kiya, to str me aakhiri baar overwrite hui value hi bachi thi, jo ki 'A' hai
+Key Takeaway
+Aap loop ke andar string ko concatenate (add/append) nahi kar rahe ho, balki har baar overwrite (reassign) kar rahe ho
+Reassignment (Aapke Code me): str = Pop() ➔ Har step par purani value delete karke sirf nayi value store karta hai. Last me sirf 'A' bachta hai
+Concatenation (Sahi Tarika agar poori reverse string chahiye): reversedStr += Pop() ➔ Purani value ke aage nayi value ko jorta jata hai.
+
+In JavaScript, the join() method is a built-in array function used to concatenate all the elements of an array into a single string. It takes an optional "separator" argument to specify what character(s) should go between the elements, and it does not modify the original array; instead, it returns a brand-new string.
+Aakash, Data Structures and Algorithms (DSA) aur JavaScript me Pass by Reference (ya Call by Reference) ka concept memory management aur data modification se juda hai.
+
+JavaScript me variables memory me kaise store aur pass hote hain, ye unke Data Type par depend karta hai.
+
+Step-by-Step Logic Explanation
+JavaScript me data types do tarah ke hote hain:
+Primitive Types: number, string, boolean, null, undefined, symbol, BigInt (Pass by Value)
+Non-Primitive / Reference Types: Object, Array, Function (Pass by Reference)
+1. Pass by Value (Primitive Types)
+Jab aap kisi primitive value ko function me pass karte ho ya kisi doosre variable me copy karte ho, to memory me uski ek nayee copy (independent copy) banti hai. Original variable me koi change nahi hota.
+2. Call / Pass by Reference (Non-Primitive Types)
+Jab aap kisi Array ya Object ko function me pass karte ho, to actual values/data copy nahi hote. Inka Memory Address (Reference) pass hota hai.
+Impact: Function ke andar agar aap object ya array me koi change (modify/mutate) karte ho, to wo badlaav original object/array me bhi reflect hoga, kyunki dono same memory location ko point kar rahe hain.
+Code Execution Example
+Example 1: Pass by Value vs Pass by Reference
+
+// --- Pass by Value (Primitives) ---
+let num = 10;
+
+function updateNumber(x) {
+    x = 20; // Sirf local copy change hui
+}
+
+updateNumber(num);
+console.log(num); // Output: 10 (Original change nahi hua)
+
+
+// --- Pass by Reference (Arrays/Objects - DSA Context) ---
+let arr = [1, 2, 3];
+
+function modifyArray(data) {
+    data.push(4); // Reference par kam hua, memory me modification hua
+}
+
+modifyArray(arr);
+console.log(arr); // Output: [1, 2, 3, 4] (Original array change ho gaya!)
+
+Key Takeaway for DSA
+DSA me jab aap Arrays, Linked Lists, Trees, ya Graphs ke sath kaam karte ho, to reference ka logic sabse important hota hai:
+In-place Operations: Jab DSA problems me "in-place" modify karne ko kaha jaye (jaise Stack, Queue implementation, ya Array reversal), tab aap same reference ko modify karte ho.
+Accidental Mutation: Agar aapko original data safe rakhna hai, to reference directly pass karne ke bajaye Shallow Copy ([...arr]) ya Deep Copy karna padta hai.
+Reassignment vs Mutation:
+Modifying property/element (arr[0] = 10 ya arr.push()) ➔ Original Reference change hoga.
+Reassigning whole variable (arr = [1, 2, 3]) ➔ Local scope me reference ka link toot jata hai, original unchanged rehta hai.
+
+Stack Data Structure ka use karke ek string ko reverse karne ka tarika samjhaya gaya hai. Stack ka fundamental rule LIFO (Last In, First Out) hota hai, jo is kaam ke liye perfect hai.
+
+1. Core Logic aur Intuition
+Stack ki sabse badi khasiyat ye hai ki jo element sabse last mein insert (push) kiya jaata hai, wohi sabse pehle bahar (pop) nikalta hai. Agar hum ek string ke har character ko ek-ek karke stack mein daalein, toh stack ke top par wahi character hoga jo string ke end mein tha. Jab hum in characters ko ek-ek karke stack se nikalenge (pop), toh humein wahi characters reverse order mein milenge.
+
+2. Step-by-Step Logic
+Input Handling: Sabse pehle apni string ko lo aur usse ek array ya list mein convert karo taaki har character ko individually access kar sakein.
+Push Operation: Ek loop chalao jo string ke har character ko pakde aur stack mein 'push' (add) karta jaye. Isse string ka pehla character stack ke bottom par hoga aur aakhri character top par.
+Pop Operation: Ab ek doosra loop chalao jo stack khali hone tak characters ko 'pop' (remove) karta rahe. Kyunki stack LIFO follow karta hai, isliye pop karne par aakhri character sabse pehle nikal kar ayega, phir usse pehle wala, aur isi tarah poori string reverse ho jayegi.
+3. Concrete Example (Dry Run)
+Maano humein "HELLO" string ko reverse karna hai:
+
+Push Process:
+
+H ko stack mein daala (Stack: H)
+E ko daala (Stack: H, E)
+L ko daala (Stack: H, E, L)
+L ko daala (Stack: H, E, L, L)
+O ko daala (Stack: H, E, L, L, O) - O ab top par hai.
+Pop Process (Reverse):
+
+Pehli pop command: O bahar aaya.
+Doosri pop command: L bahar aaya.
+Teesri pop command: L bahar aaya.
+Chauthi pop command: E bahar aaya.
+Paanchvi pop command: H bahar aaya.
+Resulting sequence: O-L-L-E-H. Is tarah stack ne automatically string ko reverse kar diya.
