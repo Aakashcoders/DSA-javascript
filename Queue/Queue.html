@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queue</title>
+</head>
+
+<body>
+    <script>
+        let Queue = []
+        let queueSize = Queue.length
+        let maxSize = 5
+
+        function enqueue(newValue) {
+            if (queueSize < maxSize) {
+                Queue[queueSize] = newValue
+                queueSize++
+            } else {
+                alert('Queue is already full don`t add more value like : ' + newValue)
+            }
+        }
+        function display() {
+            console.log(Queue)
+        }
+        function dequeue() {
+            if (queueSize > 0) {
+                for (i = 0; i < queueSize; i++) {
+                    Queue[i] = Queue[i + 1]
+                }
+                queueSize--
+                Queue.length = queueSize //length minesh karne per last value automatical 
+            } else {
+                alert('queue already empty please add value')
+            }
+        }
+
+        enqueue(10)
+
+        enqueue(20)
+        enqueue(30)
+        display()
+    </script>
+</body>
+
+</html>

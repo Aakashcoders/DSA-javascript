@@ -1,0 +1,44 @@
+A queue is a linear data structure that follows the First In, First Out (FIFO) principle. 
+This means the first element added to the queue will be the first one to be removed or processed, closely mirroring a real-world line of people waiting for a service
+Key Terminologies 
+A queue is open at both ends and uses two primary pointers to track data
+Front (or Head): The end from which elements are removed or accessed.
+Rear (or Tail): The end where new elements are inserted
+Basic OperationsAccording to data structure guides on GeeksforGeeks and TutorialsPoint, a standard queue supports these core operations:
+Enqueue: Adds an element to the rear of the queue.
+Dequeue: Removes and returns the element at the front of the queue.
+Peek (or Front): Views the element at the front without removing it.
+isEmpty: Checks if the queue contains any elements.
+isFull: Checks if the queue has reached its maximum capacity (applicable to fixed-size arrays).
+Types of Queues
+Simple Queue: Insertion happens at the rear, and deletion happens at the front.
+Circular Queue: The last position is connected back to the first position to make efficient use of memory.
+Priority Queue: Each element is assigned a priority. Elements with higher priority are dequeued before lower-priority ones.
+Double-Ended Queue (Deque): Elements can be inserted or removed from either the front or the rear.
+ Queue Data Structure ko JavaScript ke through implement karna sikhaya gaya hai. Queue ek linear data structure hai jo FIFO (First In, First Out) principle par kaam karta hai. Matlab jo element sabse pehle add hoga, wahi sabse pehle nikala jayega.
+
+1. Core Logic aur Intuition
+Queue ka matlab hota hai ek line. Jaise ticket window par line hoti hai—jo pehle aata hai, wo pehle ticket lekar nikalta hai.
+
+Enqueue: Queue me naye element ko peeche (rear) se add karna.
+Dequeue: Queue se purane element ko aage (front) se hatana.
+Intuition: Hame do pointers/positions ki zaroorat hoti hai. Ek jahan naya data daalna hai aur ek jahan se data nikalna hai.
+2. Step-by-Step Logic
+Queue ko implement karne ke liye ek array ka use karte hain:
+
+Data Storage: Ek khali array banate hain jisme elements store honge.
+Enqueue Operation:
+Pehle check karte hain ki queue full to nahi hai (agar fixed size rakha hai).
+Agar jagah hai, to naye item ko array ke end me add kar dete hain.
+Dequeue Operation:
+Pehle check karte hain ki queue empty to nahi hai.
+Agar data hai, to pehla element (index 0) remove karna hota hai. Iske liye hum loop chala kar sabhi elements ko ek position peeche shift karte hain (index 1 wala 0 par aa jayega, 2 wala 1 par, etc.).
+Ant me, array ka size ek se kam kar dete hain taaki last wala extra element hat jaye.
+3. Dry Run (Example: [10, 20, 30])
+Maan lo hamare pass [10, 20, 30] hai aur hame 10 ko remove (Dequeue) karna hai:
+
+Step 1: Loop chalao index 0 se shuru karke.
+Step 2: Index 0 par, index 1 ki value (20) copy kar do. Ab array: [20, 20, 30].
+Step 3: Index 1 par, index 2 ki value (30) copy kar do. Ab array: [20, 30, 30].
+Step 4: Ab loop khatam hua. Ab array ki length 1 se ghata do (array ka size 3 se 2 kar do).
+Result: Final array ban jayega [20, 30]. Is tarah 10 successfully remove ho gaya.
