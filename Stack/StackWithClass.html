@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack with class</title>
+</head>
+
+<body>
+    <script>
+        class Stack {
+            data = []
+            CurrentSize;
+            MaxSize;
+
+            constructor(Size) {
+                // console.log("Constracture Running")
+                this.MaxSize = Size
+                this.CurrentSize = this.data.length
+
+            }
+            push(newValue) {
+                if (this.CurrentSize >= this.MaxSize) {
+                    alert('Stack is Overflow not add this element :' + newValue)
+                } else {
+                    this.data[this.CurrentSize] = newValue
+                    this.CurrentSize++
+                }
+            }
+            pop() {
+                if (this.CurrentSize > 0) {
+                    let SaveValue = this.data[this.CurrentSize - 1]
+                    this.CurrentSize -= 1
+                    this.data.length = this.CurrentSize
+                    return SaveValue
+                } else {
+                    alert('Stack is already empty')
+                }
+            }
+            display() {
+                console.log("Data Elements ", this.data)
+            }
+            ReverceString(Arrays) {
+                Arrays = Arrays.split('')
+                for (let i = 0; i < Arrays.length; i++) {
+                    this.push(Arrays[i])
+                }
+
+                for (let i = 0; i < Arrays.length; i++) {
+                    let arr = this.pop()
+                    console.log(arr)
+                    // this.push(arr)
+                }
+
+            }
+        }
+
+        let newobject = new Stack(7)
+        // newobject.push(20)
+        // newobject.display()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+Name = Stack with Class 
+Date = 13/9/26
+
+In JavaScript, a class is a blueprint or template for creating objects. Introduced in ES6 (ECMAScript 2015), classes bundle data (properties) and behavior (methods) together into a single, structured format
+While JavaScript classes feel similar to classes in languages like Java or C++, they are actually "syntactic sugar" built on top of JavaScript's existing prototype-based inheritance. Under the hood, a class is simply a special type of function.
+Core Components of a Class
+class Keyword: Used to declare the class. By convention, class names use CapitalCamelCase.
+constructor() Method: A special, mandatory initialization method that automatically runs when a new object is created.
+Initialization is the process of setting up a variable, device, or system with its starting values or configuration so it is ready to use
+this Keyword: Refers to the specific object instance being created, allowing you to assign values to its properties.
+new Operator: Used to instantiate (create) a new object from the class blueprint
+Object-Oriented Programming (OOP) me Class ek blueprint (naksha) ya template hoti hai jisse hum Objects banate hain.
+Simple words me samjho:
+Class = Blueprint/Design: Jaise ek car ka map ya naksha. Iss nakshe me likha hota hai ki car ka colour kya hoga, speed kitni hogi, aur wo kaise chalegi.
+Object = Real Instance: Us nakshe ko use karke banai gayi actual car (jaise Swift, Scorpio).
+Key Features:
+Properties (Data/Variables): Entity ke paas kya hai (e.g., brand, price, color).
+Methods (Functions): Entity kya kaam kar sakti hai (e.g., drive(), brake()).
+// 1. Class Define ki (Blueprint)
+class Car {
+  constructor(brand, color) {
+    this.brand = brand; // Property
+    this.color = color;
+  }
+
+  // Method
+  drive() {
+    console.log(`${this.brand} car chal rahi hai!`);
+  }
+}
+
+// 2. Class se Object banaya (Real Instance)
+const myCar = new Car("Toyota", "Red");
+
+// 3. Properties aur Methods access kiye
+console.log(myCar.brand); // Output: Toyota
+myCar.drive();            // Output: Toyota car chal rahi hai!
+
+
+
+
+JavaScript Classes ka use karke Stack data structure banana seekhaya gaya hai. Stack ka main principle hota hai LIFO (Last In, First Out), yani jo element sabse baad me aayega, wahi sabse pehle niklega.
+
+1. Core Logic aur Intuition
+Stack ko ek stack of plates ki tarah samjho. Aap plate upar rakhte ho (Push) aur jab nikalni ho, toh sabse upar wali hi nikalte ho (Pop). Class ka use karne ka fayda ye hai ki hum stack ke data (elements) aur uske operations (push, pop, display) ko ek sath encapsulate (ek unit) kar sakte hain. Isse code manage karna aur reusable banana aasaan ho jata hai.
+
+2. Step-by-Step Logic
+Constructor: Class ke andar ek array banaya jata hai jisme data store hoga, aur ek variable rakha jata hai jo stack ka current size track karega. Ek max size bhi define kiya jata hai taaki stack full hone par error aa sake.
+Push Operation: Isme check karte hain ki stack full toh nahi hai. Agar space hai, toh naye element ko array ke last index par add karte hain aur size ko 1 se badha dete hain.
+Pop Operation: Isme check karte hain ki stack khali toh nahi hai. Agar elements hain, toh last element ko remove karte hain aur size ko 1 se kam kar dete hain.
+Display Operation: Ye simple loop ya console log ka use karke stack ke sabhi elements ko user ko dikhata hai.
+3. Concrete Example Dry Run
+Maano humne 3 size ka stack banaya:
+
+Start: Stack khali hai (size = 0).
+Push(10): Pehli plate aayi. Size 0 se 1 hua. Stack: [10].
+Push(20): Dusri plate aayi. Size 1 se 2 hua. Stack: [10, 20].
+Push(30): Teesri plate aayi. Size 2 se 3 hua. Stack: [10, 20, 30].
+Push(40): Stack full hai (size 3 hai). Error message aayega "Stack is Full".
+Pop(): Sabse upar wala element (30) nikal jayega. Size 3 se 2 hua. Stack: [10, 20].
+Display(): Function call karne par array me bache hue elements (10 aur 20) print ho jayenge.
